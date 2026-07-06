@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #0F1115; }
+  input, textarea, select, button { font-family: inherit; }
+  input:focus, textarea:focus, select:focus { outline: none; }
+  ::selection { background: #F05A11; color: #0F1115; }
+</style>
+</helmet>
+
+<div style="background:#0F1115; font-family:'Barlow',sans-serif; color:#e9eaec; overflow-x:hidden;">
+
+  <!-- ===================== NAV ===================== -->
+  <div style="position:sticky; top:0; z-index:50; background:#0F1115ee; backdrop-filter:blur(8px); border-bottom:1px solid #1f232a;">
+    <div style="max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:18px 40px;">
+      <div style="font-family:'Anton',sans-serif; font-size:24px; letter-spacing:0.02em;"><span style="color:#fff;">MOG</span><span style="color:#F05A11;">LIFE</span><span style="color:#fff;">LABS</span></div>
+      <div style="display:flex; align-items:center; gap:32px; font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:14px; letter-spacing:0.14em; text-transform:uppercase; color:#9ba1aa;">
+        <a href="#results" style="text-decoration:none; color:inherit;" style-hover="color:#F05A11;">Transformations</a>
+        <a href="#truth" style="text-decoration:none; color:inherit;" style-hover="color:#F05A11;">How It Works</a>
+        <a href="#coach" style="text-decoration:none; color:inherit;" style-hover="color:#F05A11;">About Brian</a>
+        <a href="#apply" style="text-decoration:none; background:#F05A11; color:#0F1115; padding:11px 22px; font-weight:700; clip-path:polygon(8% 0,100% 0,92% 100%,0 100%);" style-hover="background:#D94E0F;">See If You Qualify</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== HERO ===================== -->
+  <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1.05fr 0.95fr; min-height:660px; border-left:1px solid #1f232a; border-right:1px solid #1f232a;">
+    <div style="padding:76px 44px; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size:14px; letter-spacing:0.22em; text-transform:uppercase; color:#F05A11; margin-bottom:24px; display:flex; align-items:center; gap:12px;"><span style="width:38px; height:2px; background:#F05A11; display:inline-block;"></span>Mog Life · Aesthetics · Vitality</div>
+      <h1 style="font-family:'Anton',sans-serif; font-weight:400; font-size:78px; line-height:0.92; text-transform:uppercase; color:#fff; margin:0 0 26px 0; letter-spacing:0.005em;">Look like<br>you <span style="color:#F05A11;">actually<br>lift.</span></h1>
+      <p style="font-size:20px; line-height:1.55; color:#a7adb6; margin:0 0 36px 0; max-width:480px;">Coaching aesthetics, energy &amp; vitality with the right tools. No fake positivity, no cookie-cutter templates — just a plan built around your body and the discipline to actually run it.</p>
+      <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
+        <a href="#apply" style="text-decoration:none; background:#F05A11; color:#0F1115; font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size:16px; letter-spacing:0.14em; text-transform:uppercase; padding:17px 34px; clip-path:polygon(6% 0,100% 0,94% 100%,0 100%);" style-hover="background:#D94E0F;">See If We're A Fit</a>
+        <a href="#results" style="text-decoration:none; color:#e9eaec; font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:15px; letter-spacing:0.14em; text-transform:uppercase; padding:17px 6px; border-bottom:2px solid #2b2f37;" style-hover="border-bottom:2px solid #F05A11;">Show Me Proof</a>
+      </div>
+      <div style="display:flex; gap:44px; margin-top:56px;">
+        <div><div style="font-family:'Anton',sans-serif; font-size:40px; color:#fff;">&lt;10<span style="font-size:22px; color:#F05A11;">%</span></div><div style="font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:#7c828c; font-weight:600;">My own body fat</div></div>
+        <div><div style="font-family:'Anton',sans-serif; font-size:40px; color:#fff;">1:1</div><div style="font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:#7c828c; font-weight:600;">Coach you talk to</div></div>
+        <div><div style="font-family:'Anton',sans-serif; font-size:40px; color:#fff;">0</div><div style="font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:#7c828c; font-weight:600;">Templates, ever</div></div>
+      </div>
+    </div>
+    <div style="position:relative; background:repeating-linear-gradient(135deg,#1A1D22,#1A1D22 12px,#16191e 12px,#16191e 24px); display:flex; align-items:flex-end; border-left:1px solid #1f232a;">
+      <div style="position:absolute; top:0; right:0; width:0; height:0; border-top:70px solid #F05A11; border-left:70px solid transparent;"></div>
+      <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;"><span style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.14em; color:#565c66; text-transform:uppercase;">[ hero photo — Brian, gym ]</span></div>
+      <div style="position:relative; margin:34px; background:#0F1115cc; backdrop-filter:blur(2px); border-left:3px solid #F05A11; padding:18px 22px;"><div style="font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size:14px; letter-spacing:0.16em; text-transform:uppercase; color:#fff;">Powered by spite</div><div style="font-size:14px; color:#9ba1aa; margin-top:4px;">And a stupid amount of consistency.</div></div>
+    </div>
+  </div>
+
+  <!-- ===================== MARQUEE ===================== -->
+  <div style="background:#F05A11; overflow:hidden; white-space:nowrap; padding:14px 0;">
+    <div style="display:inline-block; font-family:'Anton',sans-serif; font-size:20px; letter-spacing:0.08em; text-transform:uppercase; color:#0F1115;">
+      Bulk hard · Cut aggressive · Stay shredded · No fake positivity · Real effort · The right tools · Mog Life · Bulk hard · Cut aggressive · Stay shredded · No fake positivity · Real effort · The right tools · Mog Life ·&nbsp;
+    </div>
+  </div>
+
+  <!-- ===================== WHAT YOU GET ===================== -->
+  <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); border-left:1px solid #1f232a; border-right:1px solid #1f232a; border-bottom:1px solid #1f232a;">
+    <div style="padding:40px 40px; border-right:1px solid #1f232a;"><div style="font-family:'Anton',sans-serif; font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:#F05A11;">01 · 1:1 Coaching</div><div style="font-size:16px; color:#c4c9d0; margin-top:10px; line-height:1.55;">You talk to me, not a chatbot or some intern. Weekly check-ins, direct access, adjustments when your body says so — not on a template's schedule.</div></div>
+    <div style="padding:40px 40px; border-right:1px solid #1f232a;"><div style="font-family:'Anton',sans-serif; font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:#F05A11;">02 · Training + Nutrition</div><div style="font-size:16px; color:#c4c9d0; margin-top:10px; line-height:1.55;">Custom training, nutrition and supplementation dialed to your goal — plus honest guidance on the tools, if and when that's the conversation.</div></div>
+    <div style="padding:40px 40px;"><div style="font-family:'Anton',sans-serif; font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:#F05A11;">03 · Vitality &amp; Lifestyle</div><div style="font-size:16px; color:#c4c9d0; margin-top:10px; line-height:1.55;">Energy, sleep, libido, discipline — the stuff that makes looking good actually feel good. Sustainable, not a 12-week crash-and-rebound.</div></div>
+  </div>
+
+  <!-- ===================== TRANSFORMATIONS ===================== -->
+  <div id="results" style="max-width:1200px; margin:0 auto; padding:72px 44px; background:#0d0f13; border-left:1px solid #1f232a; border-right:1px solid #1f232a;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:34px; flex-wrap:wrap; gap:16px;">
+      <h2 style="font-family:'Anton',sans-serif; font-size:48px; text-transform:uppercase; color:#fff; margin:0; line-height:1;">Receipts, not <span style="color:#F05A11;">promises</span></h2>
+      <div style="font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:14px; letter-spacing:0.14em; text-transform:uppercase; color:#7c828c;">Everyone here did the work. So will you.</div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:22px;">
+      <div style="background:#1A1D22; border:1px solid #23272e;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; height:250px;">
+          <div style="background:repeating-linear-gradient(135deg,#202329,#202329 10px,#191c21 10px,#191c21 20px); display:flex; align-items:center; justify-content:center;"><span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#565c66;">BEFORE</span></div>
+          <div style="background:repeating-linear-gradient(135deg,#24272d,#24272d 10px,#1c1f24 10px,#1c1f24 20px); display:flex; align-items:center; justify-content:center; border-left:1px solid #0F1115;"><span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#6b717b;">AFTER</span></div>
+        </div>
+        <div style="padding:18px 20px;"><div style="display:flex; justify-content:space-between; align-items:baseline;"><span style="font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size:17px; letter-spacing:0.06em; text-transform:uppercase; color:#fff;">Marcus D.</span><span style="font-family:'Anton',sans-serif; color:#F05A11; font-size:22px;">−34 lb</span></div><div style="font-size:14px; color:#8b919b; margin-top:4px;">20 weeks · "Hated every minute. Worth it."</div></div>
+      </div>
+      <div style="background:#1A1D22; border:1px solid #23272e;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; height:250px;">
+          <div style="background:repeating-linear-gradient(135deg,#202329,#202329 10px,#191c21 10px,#191c21 20px); display:flex; align-items:center; justify-content:center;"><span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#565c66;">BEFORE</span></div>
+          <div style="background:repeating-linear-gradient(135deg,#24272d,#24272d 10px,#1c1f24 10px,#1c1f24 20px); display:flex; align-items:center; justify-content:center; border-left:1px solid #0F1115;"><span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#6b717b;">AFTER</span></div>
+        </div>
+        <div style="padding:18px 20px;"><div style="display:flex; justify-content:space-between; align-items:baseline;"><span style="font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size:17px; letter-spacing:0.06em; text-transform:uppercase; color:#fff;">Priya R.</span><span style="font-family:'Anton',sans-serif; color:#F05A11; font-size:22px;">+11 lb</span></div><div style="font-size:14px; color:#8b919b; margin-top:4px;">16 weeks · lean muscle, first time visible abs</div></div>
+      </div>
+      <div style="background:#1A1D22; border:1px solid #23272e;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; height:250px;">
+          <div style="background:repeating-linear-gradient(135deg,#202329,#202329 10px,#191c21 10px,#191c21 20px); display:flex; align-items:center; justify-content:center;"><span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#565c66;">BEFORE</span></div>
+          <div style="background:repeating-linear-gradient(135deg,#24272d,#24272d 10px,#1c1f24 10px,#1c1f24 20px); display:flex; align-items:center; justify-content:center; border-left:1px solid #0F1115;"><span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#6b717b;">AFTER</span></div>
+        </div>
+        <div style="padding:18px 20px;"><div style="display:flex; justify-content:space-between; align-items:baseline;"><span style="font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size:17px; letter-spacing:0.06em; text-transform:uppercase; color:#fff;">Jordan T.</span><span style="font-family:'Anton',sans-serif; color:#F05A11; font-size:22px;">−22 lb</span></div><div style="font-size:14px; color:#8b919b; margin-top:4px;">24 weeks · recomp · "Dad bod, retired."</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== THE DEAL / TRUTH ===================== -->
+  <div id="truth" style="max-width:1200px; margin:0 auto; padding:76px 44px; border-left:1px solid #1f232a; border-right:1px solid #1f232a; border-top:1px solid #1f232a;">
+    <div style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:start;">
+      <div>
+        <div style="font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size:14px; letter-spacing:0.2em; text-transform:uppercase; color:#F05A11; margin-bottom:16px;">The honest part</div>
+        <h2 style="font-family:'Anton',sans-serif; font-size:46px; line-height:0.98; text-transform:uppercase; color:#fff; margin:0 0 20px 0;">No fluff.<br>No fairy tales.</h2>
+        <p style="font-size:17px; line-height:1.6; color:#a7adb6; margin:0;">Most coaches sell you a fantasy and a PDF. I sell you a plan, accountability, and the truth about what it takes. If you want someone to lie to you, I'm the wrong guy.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; background:#1f232a; border:1px solid #1f232a;">
+        <div style="background:#0F1115; padding:26px;"><div style="font-family:'Anton',sans-serif; font-size:15px; text-transform:uppercase; color:#F05A11; margin-bottom:8px;">Real effort</div><div style="font-size:15px; color:#c4c9d0; line-height:1.55;">The tools help. They don't do the reps, cook the food, or show up for you. That part's on you — I just make sure it isn't wasted.</div></div>
+        <div style="background:#0F1115; padding:26px;"><div style="font-family:'Anton',sans-serif; font-size:15px; text-transform:uppercase; color:#F05A11; margin-bottom:8px;">Straight talk</div><div style="font-size:15px; color:#c4c9d0; line-height:1.55;">You'll know exactly why you're doing everything. No mystery, no guru mysticism, no "trust the process" hand-waving.</div></div>
+        <div style="background:#0F1115; padding:26px;"><div style="font-family:'Anton',sans-serif; font-size:15px; text-transform:uppercase; color:#F05A11; margin-bottom:8px;">Selective intake</div><div style="font-size:15px; color:#c4c9d0; line-height:1.55;">I take a handful of clients at a time. If we're not a fit, I'll tell you and point you somewhere useful. No hard sell.</div></div>
+        <div style="background:#0F1115; padding:26px;"><div style="font-family:'Anton',sans-serif; font-size:15px; text-transform:uppercase; color:#F05A11; margin-bottom:8px;">Built to last</div><div style="font-size:15px; color:#c4c9d0; line-height:1.55;">Sub-10% and still enjoying your life — married-with-kids included. Aesthetics that survive a vacation and a bad week.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== COACH / ABOUT ===================== -->
+  <div id="coach" style="max-width:1200px; margin:0 auto; background:#0d0f13; border-left:1px solid #1f232a; border-right:1px solid #1f232a; border-top:1px solid #1f232a; display:grid; grid-template-columns:0.9fr 1.1fr;">
+    <div style="position:relative; background:repeating-linear-gradient(135deg,#1A1D22,#1A1D22 12px,#16191e 12px,#16191e 24px); min-height:440px; display:flex; align-items:center; justify-content:center; border-right:1px solid #1f232a;">
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.14em; color:#565c66; text-transform:uppercase;">[ photo — Brian ]</span>
+      <div style="position:absolute; left:0; bottom:0; background:#F05A11; color:#0F1115; font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size:14px; letter-spacing:0.12em; text-transform:uppercase; padding:12px 20px;">@FattyNoNatty</div>
+    </div>
+    <div style="padding:56px 44px; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size:14px; letter-spacing:0.2em; text-transform:uppercase; color:#F05A11; margin-bottom:16px;">Who runs the lab</div>
+      <h2 style="font-family:'Anton',sans-serif; font-size:44px; line-height:1; text-transform:uppercase; color:#fff; margin:0 0 20px 0;">Jacked dad.<br>In the trenches.</h2>
+      <p style="font-size:17px; line-height:1.65; color:#a7adb6; margin:0 0 18px 0;">I'm Brian. I've been through peak puffy and peak fatty, and I chase sub-10% with a wife, kids and a real life attached. I know exactly how annoying it is to want to look great and still have to function like an adult.</p>
+      <p style="font-size:17px; line-height:1.65; color:#a7adb6; margin:0 0 28px 0;">I coach the way I train: honest, a little unhinged, dead serious about results. I'll roast the process with you and then hold you to it anyway.</p>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <span style="border:1px solid #2b2f37; color:#c4c9d0; font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; padding:11px 18px;">By application only</span>
+        <span style="border:1px solid #2b2f37; color:#c4c9d0; font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; padding:11px 18px;">Weekly 1:1 check-ins</span>
+        <span style="border:1px solid #2b2f37; color:#c4c9d0; font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; padding:11px 18px;">Every plan built around your life</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== APPLICATION ===================== -->
+  <div id="apply" style="max-width:1200px; margin:0 auto; padding:76px 44px; border-left:1px solid #1f232a; border-right:1px solid #1f232a; border-top:1px solid #1f232a; display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px;">
+    <div>
+      <div style="font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size:14px; letter-spacing:0.2em; text-transform:uppercase; color:#F05A11; margin-bottom:16px;">See if we're a fit</div>
+      <h2 style="font-family:'Anton',sans-serif; font-size:48px; line-height:0.98; text-transform:uppercase; color:#fff; margin:0 0 20px 0;">Apply.<br>Quit<br>overthinking it.</h2>
+      <p style="font-size:17px; line-height:1.6; color:#a7adb6; margin:0 0 30px 0;">Spots are limited and I actually read these. Tell me where you're at and where you want to be. If we're a fit, you'll hear from me within 48 hours. If we're not, I'll tell you that too.</p>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="display:flex; gap:12px; align-items:center; color:#c4c9d0; font-size:15px;"><span style="color:#F05A11; font-family:'Anton',sans-serif;">›</span> Reply within 48 hours, from me</div>
+        <div style="display:flex; gap:12px; align-items:center; color:#c4c9d0; font-size:15px;"><span style="color:#F05A11; font-family:'Anton',sans-serif;">›</span> No obligation, no hard sell, no spam</div>
+        <div style="display:flex; gap:12px; align-items:center; color:#c4c9d0; font-size:15px;"><span style="color:#F05A11; font-family:'Anton',sans-serif;">›</span> Built for your goal, not a template</div>
+      </div>
+    </div>
+    <div style="background:#1A1D22; border:1px solid #23272e; border-top:3px solid #F05A11; padding:34px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div><label style="display:block; font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#8b919b; margin-bottom:7px;">Name</label><input type="text" placeholder="Jane Doe" style="width:100%; background:#0F1115; border:1px solid #2b2f37; color:#e9eaec; font-size:15px; padding:12px 14px;" style-focus="border:1px solid #F05A11;" /></div>
+        <div><label style="display:block; font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#8b919b; margin-bottom:7px;">Email</label><input type="email" placeholder="you@email.com" style="width:100%; background:#0F1115; border:1px solid #2b2f37; color:#e9eaec; font-size:15px; padding:12px 14px;" style-focus="border:1px solid #F05A11;" /></div>
+        <div><label style="display:block; font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#8b919b; margin-bottom:7px;">Primary goal</label><select style="width:100%; background:#0F1115; border:1px solid #2b2f37; color:#c4c9d0; font-size:15px; padding:12px 14px;" style-focus="border:1px solid #F05A11;"><option>Get lean / cut</option><option>Build muscle</option><option>Recomposition</option><option>Energy &amp; vitality</option><option>Contest prep</option></select></div>
+        <div><label style="display:block; font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#8b919b; margin-bottom:7px;">How serious are you?</label><select style="width:100%; background:#0F1115; border:1px solid #2b2f37; color:#c4c9d0; font-size:15px; padding:12px 14px;" style-focus="border:1px solid #F05A11;"><option>All in, let's go</option><option>Serious but need a push</option><option>Just curious for now</option></select></div>
+        <div style="grid-column:span 2;"><label style="display:block; font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#8b919b; margin-bottom:7px;">What's actually been stopping you?</label><textarea rows="3" placeholder="Be honest. I've heard worse." style="width:100%; background:#0F1115; border:1px solid #2b2f37; color:#e9eaec; font-size:15px; padding:12px 14px; resize:vertical;" style-focus="border:1px solid #F05A11;"></textarea></div>
+      </div>
+      <button style="width:100%; margin-top:22px; background:#F05A11; color:#0F1115; border:none; font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size:16px; letter-spacing:0.16em; text-transform:uppercase; padding:16px; cursor:pointer;" style-hover="background:#D94E0F;">Send My Application</button>
+      <div style="text-align:center; margin-top:14px; font-size:13px; color:#7c828c;">Prefer the DMs? <span style="color:#F05A11;">@FattyNoNatty</span> — slide in, come correct.</div>
+    </div>
+  </div>
+
+  <!-- ===================== FOOTER / SOCIALS ===================== -->
+  <div style="max-width:1200px; margin:0 auto; padding:44px; background:#0d0f13; border:1px solid #1f232a; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px;">
+    <div>
+      <div style="font-family:'Anton',sans-serif; font-size:24px;"><span style="color:#fff;">MOG</span><span style="color:#F05A11;">LIFE</span><span style="color:#fff;">LABS</span></div>
+      <div style="font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:#7c828c; margin-top:6px;">Mog Life · Coaching aesthetics, energy &amp; vitality</div>
+    </div>
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <span style="border:1px solid #2b2f37; color:#c4c9d0; font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; padding:11px 18px;" style-hover="border:1px solid #F05A11; color:#F05A11;">X / @FattyNoNatty</span>
+      <span style="border:1px solid #2b2f37; color:#c4c9d0; font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; padding:11px 18px;" style-hover="border:1px solid #F05A11; color:#F05A11;">Instagram</span>
+      <span style="border:1px solid #2b2f37; color:#c4c9d0; font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; padding:11px 18px;" style-hover="border:1px solid #F05A11; color:#F05A11;">YouTube</span>
+    </div>
+  </div>
+
+  <div style="max-width:1200px; margin:0 auto; padding:22px 44px; border-left:1px solid #1f232a; border-right:1px solid #1f232a; border-bottom:1px solid #1f232a; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:12px; color:#565c66;">
+    <span>© 2026 MOG LIFE LABS. All rights reserved.</span>
+    <span style="font-family:'IBM Plex Mono',monospace; letter-spacing:0.1em;">RESULTS VARY. EFFORT DOESN'T.</span>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>
