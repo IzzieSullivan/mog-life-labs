@@ -881,6 +881,12 @@
   }
 }
 
+@media (min-width: 1280px) {
+  .btn--nav {
+    margin-right: -40px;
+  }
+}
+
 @media (max-width: 720px) {
   .nav__inner {
     padding: 16px 20px;

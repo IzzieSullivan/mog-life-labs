@@ -19,6 +19,20 @@ describe('responsive landing page', () => {
     });
   });
 
+  it('aligns the desktop nav CTA with the content frame', () => {
+    cy.viewport(1280, 900);
+    cy.visit('/');
+
+    cy.get('.hero').then(($hero) => {
+      cy.get('.btn--nav').then(($button) => {
+        const heroRight = Math.round($hero[0].getBoundingClientRect().right);
+        const buttonRight = Math.round($button[0].getBoundingClientRect().right);
+
+        expect(buttonRight).to.equal(heroRight);
+      });
+    });
+  });
+
   it('uses the mobile nav menu below the tablet breakpoint', () => {
     cy.viewport(375, 812);
     cy.visit('/');
