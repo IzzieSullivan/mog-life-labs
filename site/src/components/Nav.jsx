@@ -20,7 +20,7 @@ export default function Nav() {
         <button
           type="button"
           className="nav__toggle"
-          aria-label="Toggle menu"
+          aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
