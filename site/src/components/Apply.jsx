@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // TODO: create a form at https://formspree.io and drop the form ID here
 // (or set VITE_FORMSPREE_ID in a .env file) before going live.
@@ -7,6 +7,13 @@ const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_ID}`;
 
 export default function Apply() {
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+  const successHeadingRef = useRef(null);
+
+  useEffect(() => {
+    if (status === 'success') {
+      successHeadingRef.current?.focus();
+    }
+  }, [status]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -69,7 +76,34 @@ export default function Apply() {
           </div>
         </div>
       </div>
-      <div className="form-card">
+      {status === 'success' ? (
+        <div className="form-card form-success" role="status" aria-live="polite">
+          <div className="form-success__mark" aria-hidden="true">✓</div>
+          <div className="section-eyebrow">Submission confirmed</div>
+          <h3 ref={successHeadingRef} className="form-success__title" tabIndex="-1">
+            Application received.
+          </h3>
+          <p className="form-success__body">
+            You did your part. Brian reads every application personally. If it
+            looks like a fit, you&apos;ll hear from <strong>@MogLifeLabs</strong>{' '}
+            within 48 hours.
+          </p>
+          <div className="form-success__status">
+            <span>Response window</span>
+            <strong>Within 48 hours</strong>
+          </div>
+          <a
+            className="btn btn--form form-success__cta"
+            href="https://x.com/MogLifeLabs"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Follow @MogLifeLabs on X
+          </a>
+          <p className="form-success__note">No need to submit again.</p>
+        </div>
+      ) : (
+        <div className="form-card">
         <form onSubmit={handleSubmit} aria-busy={status === 'submitting'}>
           <input
             type="hidden"
@@ -116,25 +150,17 @@ export default function Apply() {
           <button type="submit" className="btn btn--form" disabled={status === 'submitting'}>
             {status === 'submitting' ? 'Sending…' : 'Send My Application'}
           </button>
-          {status === 'success' && (
-            <div
-              className="form-status form-status--success"
-              role="status"
-              aria-live="polite"
-            >
-              Got it. Expect to hear from me within 48 hours.
-            </div>
-          )}
           {status === 'error' && (
             <div className="form-status form-status--error" role="alert">
-              Something didn't go through — DM @MogLifeLabs instead.
+              Something didn&apos;t go through — DM @MogLifeLabs instead.
             </div>
           )}
         </form>
         <div className="form-dm">
           Prefer the DMs? <span>@MogLifeLabs</span> — slide in, come correct.
         </div>
-      </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -77,18 +77,20 @@ describe('MOG LIFE LABS app', () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true }));
     render(<App />);
 
-    const name = screen.getByLabelText(/name/i);
-    const email = screen.getByLabelText(/email/i);
-
-    await user.type(name, 'Jane Doe');
-    await user.type(email, 'jane@example.com');
+    await user.type(screen.getByLabelText(/name/i), 'Jane Doe');
+    await user.type(screen.getByLabelText(/email/i), 'jane@example.com');
     await user.click(screen.getByRole('button', { name: /send my application/i }));
 
-    expect(
-      await screen.findByText(/expect to hear from me within 48 hours/i)
-    ).toHaveAttribute('role', 'status');
-    expect(name).toHaveValue('');
-    expect(email).toHaveValue('');
+    const successHeading = await screen.findByRole('heading', {
+      name: /application received/i,
+    });
+    expect(successHeading).toHaveFocus();
+    expect(screen.getByRole('status')).toHaveTextContent(/within 48 hours/i);
+    expect(screen.queryByLabelText(/email/i)).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /follow.*moglifelabs.*x/i })).toHaveAttribute(
+      'href',
+      'https://x.com/MogLifeLabs'
+    );
     expect(fetch).toHaveBeenCalledWith(
       'https://formspree.io/f/test-form',
       expect.objectContaining({ method: 'POST' })

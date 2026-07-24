@@ -798,6 +798,109 @@
   color: #e0574a;
 }
 
+.form-success {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 460px;
+  overflow: hidden;
+  position: relative;
+}
+
+.form-success::after {
+  color: rgb(255 92 0 / 0.08);
+  content: '✓';
+  font-family: var(--font-display);
+  font-size: 300px;
+  line-height: 1;
+  position: absolute;
+  right: -24px;
+  top: -52px;
+  z-index: 0;
+}
+
+.form-success > * {
+  position: relative;
+  z-index: 1;
+}
+
+.form-success__mark {
+  align-items: center;
+  background: var(--color-orange);
+  color: var(--color-bg);
+  display: flex;
+  font-family: var(--font-condensed);
+  font-size: 24px;
+  font-weight: 700;
+  height: 48px;
+  justify-content: center;
+  margin-bottom: 28px;
+  width: 48px;
+}
+
+.form-success__title {
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 0.95;
+  margin: 14px 0 20px;
+  max-width: 520px;
+  text-transform: uppercase;
+}
+
+.form-success__title:focus {
+  outline: none;
+}
+
+.form-success__body {
+  color: var(--color-text-body);
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0 0 24px;
+  max-width: 560px;
+}
+
+.form-success__body strong {
+  color: var(--color-orange);
+}
+
+.form-success__status {
+  border-bottom: 1px solid var(--color-border-strong);
+  border-top: 1px solid var(--color-border-strong);
+  display: flex;
+  font-family: var(--font-condensed);
+  justify-content: space-between;
+  letter-spacing: 0.08em;
+  margin-bottom: 24px;
+  padding: 14px 0;
+  text-transform: uppercase;
+}
+
+.form-success__status span {
+  color: var(--color-text-muted);
+}
+
+.form-success__status strong {
+  color: var(--color-text);
+}
+
+.form-success__cta {
+  display: inline-flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.form-success__note {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  margin: 14px 0 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 /* ===================== FOOTER ===================== */
 
 .footer {
@@ -1079,6 +1182,16 @@
 
   .apply__list-item {
     align-items: flex-start;
+  }
+
+  .form-success {
+    min-height: 0;
+  }
+
+  .form-success__status {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
   }
 
   .footer__socials,
