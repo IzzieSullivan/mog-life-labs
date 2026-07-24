@@ -70,7 +70,12 @@ export default function Apply() {
         </div>
       </div>
       <div className="form-card">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} aria-busy={status === 'submitting'}>
+          <input
+            type="hidden"
+            name="subject"
+            value="New MOG LIFE LABS coaching application"
+          />
           <div className="form-grid">
             <div className="form-field">
               <label htmlFor="name">Name</label>
@@ -102,7 +107,7 @@ export default function Apply() {
               <label htmlFor="blocker">What's actually been stopping you?</label>
               <textarea
                 id="blocker"
-                name="blocker"
+                name="message"
                 rows="3"
                 placeholder="Be honest. I've heard worse."
               />
@@ -112,18 +117,22 @@ export default function Apply() {
             {status === 'submitting' ? 'Sending…' : 'Send My Application'}
           </button>
           {status === 'success' && (
-            <div className="form-status form-status--success">
+            <div
+              className="form-status form-status--success"
+              role="status"
+              aria-live="polite"
+            >
               Got it. Expect to hear from me within 48 hours.
             </div>
           )}
           {status === 'error' && (
-            <div className="form-status form-status--error">
-              Something didn't go through — DM @FattyNoNatty instead.
+            <div className="form-status form-status--error" role="alert">
+              Something didn't go through — DM @MogLifeLabs instead.
             </div>
           )}
         </form>
         <div className="form-dm">
-          Prefer the DMs? <span>@FattyNoNatty</span> — slide in, come correct.
+          Prefer the DMs? <span>@MogLifeLabs</span> — slide in, come correct.
         </div>
       </div>
     </div>

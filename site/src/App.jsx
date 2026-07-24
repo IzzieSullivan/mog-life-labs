@@ -12,14 +12,19 @@ import Footer from './components/Footer';
 function App() {
   return (
     <div className="page">
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
       <Nav />
-      <Hero />
-      <Marquee />
-      <WhatYouGet />
-      <Transformations />
-      <Truth />
-      <Coach />
-      <Apply />
+      <main id="main-content">
+        <Hero />
+        <Marquee />
+        <WhatYouGet />
+        <Transformations />
+        <Truth />
+        <Coach />
+        <Apply />
+      </main>
       <Footer />
     </div>
   );

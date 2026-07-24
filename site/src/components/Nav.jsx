@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const LINKS = [
   { href: '#results', label: 'Transformations' },
@@ -8,9 +8,49 @@ const LINKS = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const menuRef = useRef(null);
+  const toggleRef = useRef(null);
+
+  useEffect(() => {
+    if (!open) return undefined;
+
+    const menu = menuRef.current;
+    const firstLink = menu?.querySelector('a');
+    const focusFrame = window.requestAnimationFrame(() => firstLink?.focus());
+
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        setOpen(false);
+        toggleRef.current?.focus();
+        return;
+      }
+
+      if (event.key !== 'Tab' || !window.matchMedia('(max-width: 720px)').matches) {
+        return;
+      }
+
+      const focusable = [...menu.querySelectorAll('a, button')];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.cancelAnimationFrame(focusFrame);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [open]);
 
   return (
-    <div className="nav">
+    <nav className="nav" aria-label="Primary navigation">
       <div className="shell nav__inner">
         <div className="logo">
           <span className="logo__mog">MOG</span>
@@ -18,15 +58,21 @@ export default function Nav() {
           <span className="logo__labs">LABS</span>
         </div>
         <button
+          ref={toggleRef}
           type="button"
           className="nav__toggle"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
+          aria-controls="primary-menu"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? '✕' : '☰'}
         </button>
-        <div className={`nav__links${open ? ' is-open' : ''}`}>
+        <div
+          id="primary-menu"
+          ref={menuRef}
+          className={`nav__links${open ? ' is-open' : ''}`}
+        >
           {LINKS.map((link) => (
             <a
               key={link.href}
@@ -46,6 +92,6 @@ export default function Nav() {
           </a>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }

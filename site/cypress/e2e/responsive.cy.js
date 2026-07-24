@@ -40,6 +40,7 @@ describe('responsive landing page', () => {
     cy.get('button[aria-label="Open menu"]').as('toggle');
     cy.get('@toggle').should('have.attr', 'aria-expanded', 'false');
     cy.get('@toggle').click();
+    cy.contains('a', 'Transformations').should('have.focus');
     cy.contains('a', 'About Brian').should('be.visible').click();
     cy.get('button[aria-label="Open menu"]').should(
       'have.attr',
@@ -48,13 +49,33 @@ describe('responsive landing page', () => {
     );
   });
 
-  it('keeps the application form usable on mobile', () => {
+  it('supports keyboard navigation and visible focus', () => {
+    cy.viewport(375, 812);
+    cy.visit('/');
+
+    cy.contains('a', 'Skip to main content').focus().should('have.focus');
+    cy.get('button[aria-label="Open menu"]').click();
+    cy.contains('a', 'Transformations').should('have.focus');
+    cy.focused().type('{esc}');
+    cy.get('button[aria-label="Open menu"]').should('have.focus');
+  });
+
+  it('submits the application form successfully on mobile', () => {
     cy.viewport(390, 844);
+    cy.intercept('POST', 'https://formspree.io/f/test-form', {
+      statusCode: 200,
+      body: { ok: true },
+    }).as('submitApplication');
     cy.visit('/');
 
     cy.get('input[name="name"]').type('Jane Doe');
     cy.get('input[name="email"]').type('jane@example.com');
     cy.contains('button', 'Send My Application').click();
-    cy.contains("Something didn't go through").should('be.visible');
+    cy.wait('@submitApplication')
+      .its('request.body')
+      .should('include', 'New MOG LIFE LABS coaching application');
+    cy.contains('Expect to hear from me within 48 hours').should('be.visible');
+    cy.get('input[name="name"]').should('have.value', '');
+    cy.get('input[name="email"]').should('have.value', '');
   });
 });
