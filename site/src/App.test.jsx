@@ -1,8 +1,13 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { beforeEach, vi } from 'vitest';
 import App from './App';
 
 describe('MOG LIFE LABS app', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it('renders the primary landing page sections', () => {
     render(<App />);
 
@@ -14,6 +19,20 @@ describe('MOG LIFE LABS app', () => {
     ).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /apply/i })).toBeInTheDocument();
     expect(screen.getByLabelText(/email/i)).toBeRequired();
+    expect(screen.getByRole('link', { name: /instagram/i })).toHaveAttribute(
+      'href',
+      'https://www.instagram.com/moglifelabs/'
+    );
+    expect(screen.getByRole('link', { name: /x.*moglifelabs/i })).toHaveAttribute(
+      'href',
+      'https://x.com/MogLifeLabs'
+    );
+    expect(
+      screen.getByText(/we do not sell your personal information/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/coaching content is for educational purposes only/i)
+    ).toBeInTheDocument();
   });
 
   it('opens and closes the mobile menu from the nav toggle', async () => {
@@ -28,16 +47,20 @@ describe('MOG LIFE LABS app', () => {
     expect(
       screen.getByRole('button', { name: /close menu/i })
     ).toHaveAttribute('aria-expanded', 'true');
+    await waitFor(() => {
+      expect(screen.getByRole('link', { name: /transformations/i })).toHaveFocus();
+    });
 
-    await user.click(screen.getByRole('link', { name: /about brian/i }));
+    await user.keyboard('{Escape}');
 
-    expect(
-      screen.getByRole('button', { name: /open menu/i })
-    ).toHaveAttribute('aria-expanded', 'false');
+    const closedToggle = screen.getByRole('button', { name: /open menu/i });
+    expect(closedToggle).toHaveAttribute('aria-expanded', 'false');
+    expect(closedToggle).toHaveFocus();
   });
 
-  it('shows a local error when Formspree is not configured', async () => {
+  it('shows an error when the form service rejects the application', async () => {
     const user = userEvent.setup();
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: false }));
     render(<App />);
 
     await user.type(screen.getByLabelText(/name/i), 'Jane Doe');
@@ -46,6 +69,34 @@ describe('MOG LIFE LABS app', () => {
 
     expect(
       await screen.findByText(/something didn't go through/i)
-    ).toBeInTheDocument();
+    ).toHaveAttribute('role', 'alert');
+  });
+
+  it('confirms a successful application and resets the form', async () => {
+    const user = userEvent.setup();
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true }));
+    render(<App />);
+
+    const name = screen.getByLabelText(/name/i);
+    const email = screen.getByLabelText(/email/i);
+
+    await user.type(name, 'Jane Doe');
+    await user.type(email, 'jane@example.com');
+    await user.click(screen.getByRole('button', { name: /send my application/i }));
+
+    expect(
+      await screen.findByText(/expect to hear from me within 48 hours/i)
+    ).toHaveAttribute('role', 'status');
+    expect(name).toHaveValue('');
+    expect(email).toHaveValue('');
+    expect(fetch).toHaveBeenCalledWith(
+      'https://formspree.io/f/test-form',
+      expect.objectContaining({ method: 'POST' })
+    );
+    const submittedData = fetch.mock.calls[0][1].body;
+    expect(submittedData.get('subject')).toBe(
+      'New MOG LIFE LABS coaching application'
+    );
+    expect(submittedData.get('email')).toBe('jane@example.com');
   });
 });

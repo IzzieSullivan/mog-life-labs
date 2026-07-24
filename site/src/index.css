@@ -29,6 +29,12 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   margin: 0;
   background: var(--color-bg);
@@ -40,8 +46,9 @@ input, textarea, select, button {
   font-family: inherit;
 }
 
-input:focus, textarea:focus, select:focus {
-  outline: none;
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: 3px;
 }
 
 ::selection {
@@ -55,4 +62,12 @@ a {
 
 #root {
   overflow-x: hidden;
+}
+
+#main-content,
+#results,
+#truth,
+#coach,
+#apply {
+  scroll-margin-top: 84px;
 }

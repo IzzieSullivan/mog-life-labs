@@ -11,7 +11,7 @@ export default function Coach() {
         <div className="placeholder-label">
           <span>[ photo — Brian ]</span>
         </div>
-        <div className="coach__handle">@FattyNoNatty</div>
+        <div className="coach__handle">@MogLifeLabs</div>
       </div>
       <div className="coach__content">
         <div className="section-eyebrow">Who runs the lab</div>
