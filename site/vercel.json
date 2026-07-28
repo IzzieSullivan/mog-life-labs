@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/the-stack/:path*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/start/:path*",
+      "destination": "/index.html"
+    }
+  ]
+}
