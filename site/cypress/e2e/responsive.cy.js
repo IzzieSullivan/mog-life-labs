@@ -60,6 +60,50 @@ describe('responsive landing page', () => {
     cy.get('button[aria-label="Open menu"]').should('have.focus');
   });
 
+  viewports.forEach(({ label, width, height }) => {
+    it(`renders The Stack without horizontal overflow on ${label}`, () => {
+      cy.viewport(width, height);
+      cy.visit('/the-stack');
+
+      cy.contains('h1', 'The Stack').should('be.visible');
+      cy.contains('h2', 'Get the numbers').should('be.visible');
+      cy.contains('h2', 'Build a gym worth training in.').should('be.visible');
+      cy.contains('h2', 'A gym you can actually get to.').should('be.visible');
+      cy.contains('h2', 'Serious equipment. Uptown address.').should('be.visible');
+      cy.contains('h2', 'Useful. Tested.').should('be.visible');
+      cy.contains('h3', 'Looksmaxxing').should('be.visible');
+      cy.contains('As an Amazon Associate').should('be.visible');
+      cy.window().then((win) => {
+        expect(win.document.documentElement.scrollWidth).to.be.lte(width);
+      });
+    });
+  });
+
+  viewports.forEach(({ label, width, height }) => {
+    it(`renders the social start page without horizontal overflow on ${label}`, () => {
+      cy.viewport(width, height);
+      cy.visit('/start?source=instagram');
+
+      cy.contains('h1', 'Start here.').should('be.visible');
+      cy.contains('a', 'Main website').should(
+        'have.attr',
+        'href',
+        '/?source=instagram'
+      );
+      cy.contains('a', 'The Stack').should(
+        'have.attr',
+        'href',
+        '/the-stack?source=instagram'
+      );
+      cy.get('input[name="source"]').should('have.value', 'instagram');
+      cy.get('input[name="landing_page"]').should('have.value', '/start');
+      cy.get('.nav').should('not.exist');
+      cy.window().then((win) => {
+        expect(win.document.documentElement.scrollWidth).to.be.lte(width);
+      });
+    });
+  });
+
   it('submits the application form successfully on mobile', () => {
     cy.viewport(390, 844);
     cy.intercept('POST', 'https://formspree.io/f/test-form', {
@@ -74,8 +118,8 @@ describe('responsive landing page', () => {
     cy.wait('@submitApplication')
       .its('request.body')
       .should('include', 'New MOG LIFE LABS coaching application');
-    cy.contains('Expect to hear from me within 48 hours').should('be.visible');
-    cy.get('input[name="name"]').should('have.value', '');
-    cy.get('input[name="email"]').should('have.value', '');
+    cy.contains('h3', 'Application received.').should('be.visible');
+    cy.get('input[name="name"]').should('not.exist');
+    cy.get('input[name="email"]').should('not.exist');
   });
 });

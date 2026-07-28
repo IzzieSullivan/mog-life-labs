@@ -5,7 +5,11 @@ import { useEffect, useRef, useState } from 'react';
 const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || 'YOUR_FORM_ID';
 const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_ID}`;
 
-export default function Apply() {
+export default function Apply({
+  source = 'website',
+  landingPage = window.location.pathname,
+  compact = false,
+}) {
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
   const successHeadingRef = useRef(null);
 
@@ -49,7 +53,10 @@ export default function Apply() {
   }
 
   return (
-    <div id="apply" className="shell bordered-x apply">
+    <div
+      id="apply"
+      className={`shell bordered-x apply${compact ? ' apply--compact' : ''}`}
+    >
       <div>
         <div className="section-eyebrow">See if we're a fit</div>
         <h2 className="apply__title">
@@ -110,6 +117,8 @@ export default function Apply() {
             name="subject"
             value="New MOG LIFE LABS coaching application"
           />
+          <input type="hidden" name="source" value={source} />
+          <input type="hidden" name="landing_page" value={landingPage} />
           <div className="form-grid">
             <div className="form-field">
               <label htmlFor="name">Name</label>

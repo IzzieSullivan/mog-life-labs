@@ -6,6 +6,7 @@ import App from './App';
 describe('MOG LIFE LABS app', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    window.history.pushState({}, '', '/');
   });
 
   it('renders the primary landing page sections', () => {
@@ -58,6 +59,15 @@ describe('MOG LIFE LABS app', () => {
     expect(closedToggle).toHaveFocus();
   });
 
+  it('links to The Stack from the primary navigation', () => {
+    render(<App />);
+
+    expect(screen.getByRole('link', { name: /the stack/i })).toHaveAttribute(
+      'href',
+      '/the-stack'
+    );
+  });
+
   it('shows an error when the form service rejects the application', async () => {
     const user = userEvent.setup();
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: false }));
@@ -100,5 +110,30 @@ describe('MOG LIFE LABS app', () => {
       'New MOG LIFE LABS coaching application'
     );
     expect(submittedData.get('email')).toBe('jane@example.com');
+    expect(submittedData.get('source')).toBe('website');
+    expect(submittedData.get('landing_page')).toBe('/');
+  });
+
+  it('renders the unlisted social landing page and tracks its source', () => {
+    window.history.pushState({}, '', '/start?source=instagram');
+    const { container } = render(<App />);
+
+    expect(
+      screen.getByRole('heading', { level: 1, name: /start here/i })
+    ).toBeInTheDocument();
+    expect(screen.queryByRole('navigation', { name: /primary/i })).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /main website/i })).toHaveAttribute(
+      'href',
+      '/?source=instagram'
+    );
+    expect(screen.getByRole('link', { name: /the stack/i })).toHaveAttribute(
+      'href',
+      '/the-stack?source=instagram'
+    );
+    expect(container.querySelector('input[name="source"]')).toHaveValue('instagram');
+    expect(container.querySelector('input[name="landing_page"]')).toHaveValue('/start');
+    expect(
+      screen.getByLabelText(/substack link coming soon/i)
+    ).toBeInTheDocument();
   });
 });

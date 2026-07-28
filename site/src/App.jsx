@@ -8,8 +8,48 @@ import Truth from './components/Truth';
 import Coach from './components/Coach';
 import Apply from './components/Apply';
 import Footer from './components/Footer';
+import Stack from './components/Stack';
+import Start from './components/Start';
+
+function getTrafficSource() {
+  const params = new URLSearchParams(window.location.search);
+  const rawSource = (
+    params.get('source') ||
+    params.get('utm_source') ||
+    'direct'
+  ).trim().toLowerCase();
+  const aliases = {
+    twitter: 'x',
+    'twitter.com': 'x',
+    'x.com': 'x',
+    instagram: 'instagram',
+    ig: 'instagram',
+    substack: 'substack',
+  };
+  const safeSource = rawSource.replace(/[^a-z0-9_-]/g, '').slice(0, 40);
+
+  return aliases[rawSource] || safeSource || 'direct';
+}
 
 function App() {
+  const path = window.location.pathname.replace(/\/+$/, '') || '/';
+  const isStackPage = path === '/the-stack';
+  const isStartPage = path === '/start';
+  const source = getTrafficSource();
+
+  if (isStartPage) {
+    return (
+      <div className="page page--start">
+        <a className="skip-link" href="#main-content">
+          Skip to main content
+        </a>
+        <main id="main-content">
+          <Start source={source} />
+        </main>
+      </div>
+    );
+  }
+
   return (
     <div className="page">
       <a className="skip-link" href="#main-content">
@@ -17,13 +57,19 @@ function App() {
       </a>
       <Nav />
       <main id="main-content">
-        <Hero />
-        <Marquee />
-        <WhatYouGet />
-        <Transformations />
-        <Truth />
-        <Coach />
-        <Apply />
+        {isStackPage ? (
+          <Stack />
+        ) : (
+          <>
+            <Hero />
+            <Marquee />
+            <WhatYouGet />
+            <Transformations />
+            <Truth />
+            <Coach />
+            <Apply source={source === 'direct' ? 'website' : source} />
+          </>
+        )}
       </main>
       <Footer />
     </div>
