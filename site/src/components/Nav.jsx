@@ -4,12 +4,14 @@ const LINKS = [
   { href: '#results', label: 'Transformations' },
   { href: '#truth', label: 'How It Works' },
   { href: '#coach', label: 'About Brian' },
+  { href: '/the-stack', label: 'The Stack', page: true },
 ];
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
   const toggleRef = useRef(null);
+  const isHomePage = window.location.pathname === '/';
 
   useEffect(() => {
     if (!open) return undefined;
@@ -52,11 +54,11 @@ export default function Nav() {
   return (
     <nav className="nav" aria-label="Primary navigation">
       <div className="shell nav__inner">
-        <div className="logo">
+        <a className="logo logo--link" href="/" aria-label="MOG LIFE LABS home">
           <span className="logo__mog">MOG</span>
           <span className="logo__life">LIFE</span>
           <span className="logo__labs">LABS</span>
-        </div>
+        </a>
         <button
           ref={toggleRef}
           type="button"
@@ -76,15 +78,20 @@ export default function Nav() {
           {LINKS.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={link.page || isHomePage ? link.href : `/${link.href}`}
               className="nav__link"
+              aria-current={
+                link.page && window.location.pathname.startsWith(link.href)
+                  ? 'page'
+                  : undefined
+              }
               onClick={() => setOpen(false)}
             >
               {link.label}
             </a>
           ))}
           <a
-            href="#apply"
+            href={isHomePage ? '#apply' : '/#apply'}
             className="btn btn--nav"
             onClick={() => setOpen(false)}
           >
