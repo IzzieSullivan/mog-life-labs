@@ -16,8 +16,37 @@ describe('MOG LIFE LABS app', () => {
       /look like you actually lift/i
     );
     expect(
+      screen.getByAltText(/brian sullivan, mog life labs coach/i)
+    ).toHaveAttribute('src', '/images/brian-gym-hero.jpg');
+    expect(
       screen.getByRole('heading', { name: /receipts, not promises/i })
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: /explore coaching/i })
+    ).toHaveAttribute('href', '/coaching');
+    expect(screen.getByAltText(/patrick before/i)).toHaveAttribute(
+      'src',
+      '/images/transformations/patrick-before.jpg'
+    );
+    expect(screen.getByAltText(/patrick after/i)).toHaveAttribute(
+      'src',
+      '/images/transformations/patrick-after.jpg'
+    );
+    expect(screen.getByAltText(/brian before/i)).toHaveAttribute(
+      'src',
+      '/images/transformations/brian-before.jpg'
+    );
+    expect(screen.getByAltText(/brian after/i)).toHaveAttribute(
+      'src',
+      '/images/transformations/brian-after.jpg'
+    );
+    expect(screen.getByText(/founder/i)).toBeInTheDocument();
+    expect(screen.getByText('March 2026 → July 2026')).toBeInTheDocument();
+    expect(screen.getByText('Age 40 → Age 41')).toBeInTheDocument();
+    expect(screen.getByAltText(/brian and izzie sullivan/i)).toHaveAttribute(
+      'src',
+      '/images/brian-izzie-about.jpg'
+    );
     expect(screen.getByRole('heading', { name: /apply/i })).toBeInTheDocument();
     expect(screen.getByLabelText(/email/i)).toBeRequired();
     expect(screen.getByRole('link', { name: /instagram/i })).toHaveAttribute(
@@ -66,6 +95,69 @@ describe('MOG LIFE LABS app', () => {
       'href',
       '/the-stack'
     );
+  });
+
+  it('features Cronometer instead of the newsletter on The Stack', () => {
+    window.history.pushState({}, '', '/the-stack');
+    render(<App />);
+
+    expect(screen.getByText('Cronometer')).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { level: 2, name: /cronometer/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { level: 3, name: /track more than calories/i })
+    ).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /try cronometer/i })).toHaveAttribute(
+      'href',
+      'https://ssqt.co/mzWnRuX'
+    );
+    expect(
+      screen.getByRole('link', { name: /use our tesla referral/i })
+    ).toHaveAttribute('href', 'https://ts.la/brian38123');
+    expect(
+      screen.getByRole('link', { name: /join planet fitness/i })
+    ).toHaveAttribute(
+      'href',
+      'https://www.planetfitness.com/referrals?referralCode=H797HA8P'
+    );
+    expect(
+      screen.getByRole('link', { name: /shop peptide plugs/i })
+    ).toHaveAttribute('href', 'https://peptideplugs.com/?ref=MOGLIFE');
+    expect(screen.getByText(/10% off with code moglife/i)).toBeInTheDocument();
+    expect(screen.queryByText(/bucked up fitness/i)).not.toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: /explore bloodwork/i })
+    ).toHaveAttribute('href', 'https://vanguardperform.com/?ref=moglife');
+    expect(
+      screen.getByText(/use code brian10 for 10% off at checkout/i)
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/mog life newsletter/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/subscribe on substack/i)).not.toBeInTheDocument();
+  });
+
+  it('renders the coaching page with pricing, scope and application flow', () => {
+    window.history.pushState({}, '', '/coaching');
+    render(<App />);
+
+    expect(
+      screen.getByRole('heading', {
+        level: 1,
+        name: /build the body.*improve the whole man/i,
+      })
+    ).toBeInTheDocument();
+    expect(screen.getByText('$600')).toBeInTheDocument();
+    expect(screen.getByText('$1,500')).toBeInTheDocument();
+    expect(screen.getByText('$2,500')).toBeInTheDocument();
+    expect(screen.getByText(/regrowing his hair/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/coaching does not include medical diagnosis or treatment/i)
+    ).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Coaching' })).toHaveAttribute(
+      'aria-current',
+      'page'
+    );
+    expect(screen.getByLabelText(/email/i)).toBeRequired();
   });
 
   it('shows an error when the form service rejects the application', async () => {

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 const LINKS = [
   { href: '#results', label: 'Transformations' },
-  { href: '#truth', label: 'How It Works' },
+  { href: '/coaching', label: 'Coaching', page: true },
   { href: '#coach', label: 'About Brian' },
   { href: '/the-stack', label: 'The Stack', page: true },
 ];
