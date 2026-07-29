@@ -66,13 +66,31 @@ describe('responsive landing page', () => {
       cy.visit('/the-stack');
 
       cy.contains('h1', 'The Stack').should('be.visible');
-      cy.contains('h2', 'Get the numbers').should('be.visible');
-      cy.contains('h2', 'Build a gym worth training in.').should('be.visible');
-      cy.contains('h2', 'A gym you can actually get to.').should('be.visible');
-      cy.contains('h2', 'Serious equipment. Uptown address.').should('be.visible');
-      cy.contains('h2', 'Useful. Tested.').should('be.visible');
-      cy.contains('h3', 'Looksmaxxing').should('be.visible');
-      cy.contains('As an Amazon Associate').should('be.visible');
+      cy.contains('h2', 'Vanguard Performance Labs').should('be.visible');
+      cy.contains('h2', 'Peptide Plugs').should('be.visible');
+      cy.contains('h2', 'Cronometer').should('be.visible');
+      cy.contains('h2', 'Planet Fitness').should('be.visible');
+      cy.contains('h2', 'Tesla').should('be.visible');
+      cy.contains('h2', 'REP Fitness').should('be.visible');
+      cy.contains('button', 'Copy code').should('be.visible');
+      cy.contains('As an Amazon Associate').should('not.exist');
+      cy.window().then((win) => {
+        expect(win.document.documentElement.scrollWidth).to.be.lte(width);
+      });
+    });
+  });
+
+  viewports.forEach(({ label, width, height }) => {
+    it(`renders coaching without horizontal overflow on ${label}`, () => {
+      cy.viewport(width, height);
+      cy.visit('/coaching');
+
+      cy.contains('h1', 'Build the body.').should('be.visible');
+      cy.contains('h2', 'No template. No autopilot.').should('be.visible');
+      cy.contains('h2', 'Pick your runway.').should('be.visible');
+      cy.contains('$600').should('be.visible');
+      cy.contains('$1,500').should('be.visible');
+      cy.contains('$2,500').should('be.visible');
       cy.window().then((win) => {
         expect(win.document.documentElement.scrollWidth).to.be.lte(width);
       });

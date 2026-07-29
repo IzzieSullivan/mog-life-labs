@@ -8,9 +8,11 @@ export default function Coach() {
   return (
     <div id="coach" className="shell bordered-x coach">
       <div className="coach__photo">
-        <div className="placeholder-label">
-          <span>[ photo — Brian ]</span>
-        </div>
+        <img
+          className="coach__photo-image"
+          src="/images/brian-izzie-about.jpg"
+          alt="Brian and Izzie Sullivan"
+        />
         <div className="coach__handle">@MogLifeLabs</div>
       </div>
       <div className="coach__content">

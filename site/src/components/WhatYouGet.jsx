@@ -15,13 +15,24 @@ const FEATURES = [
 
 export default function WhatYouGet() {
   return (
-    <div className="shell bordered-x features">
-      {FEATURES.map((f) => (
-        <div className="feature" key={f.title}>
-          <div className="feature__title">{f.title}</div>
-          <div className="feature__body">{f.body}</div>
+    <>
+      <div className="shell bordered-x features">
+        {FEATURES.map((f) => (
+          <div className="feature" key={f.title}>
+            <div className="feature__title">{f.title}</div>
+            <div className="feature__body">{f.body}</div>
+          </div>
+        ))}
+      </div>
+      <div className="shell bordered-x features-cta">
+        <div>
+          <span>More than sets and macros</span>
+          <p>See the complete approach, what&apos;s included and coaching options.</p>
         </div>
-      ))}
-    </div>
+        <a className="btn features-cta__button" href="/coaching">
+          Explore Coaching
+        </a>
+      </div>
+    </>
   );
 }

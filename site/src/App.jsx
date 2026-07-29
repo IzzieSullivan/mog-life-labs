@@ -10,6 +10,7 @@ import Apply from './components/Apply';
 import Footer from './components/Footer';
 import Stack from './components/Stack';
 import Start from './components/Start';
+import Coaching from './components/Coaching';
 
 function getTrafficSource() {
   const params = new URLSearchParams(window.location.search);
@@ -35,6 +36,7 @@ function App() {
   const path = window.location.pathname.replace(/\/+$/, '') || '/';
   const isStackPage = path === '/the-stack';
   const isStartPage = path === '/start';
+  const isCoachingPage = path === '/coaching';
   const source = getTrafficSource();
 
   if (isStartPage) {
@@ -59,6 +61,8 @@ function App() {
       <main id="main-content">
         {isStackPage ? (
           <Stack />
+        ) : isCoachingPage ? (
+          <Coaching source={source === 'direct' ? 'coaching-page' : source} />
         ) : (
           <>
             <Hero />

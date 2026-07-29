@@ -45,10 +45,12 @@ export default function Hero() {
         </div>
       </div>
       <div className="hero__photo">
+        <img
+          className="hero__photo-image"
+          src="/images/brian-gym-hero.jpg"
+          alt="Brian Sullivan, MOG LIFE LABS coach"
+        />
         <div className="hero__photo-corner" />
-        <div className="placeholder-label">
-          <span>[ hero photo — Brian, gym ]</span>
-        </div>
         <div className="hero__caption">
           <div className="hero__caption-title">Powered by spite</div>
           <div className="hero__caption-sub">
