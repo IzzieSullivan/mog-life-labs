@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/coaching/:path*",
+      "destination": "/index.html"
+    },
+    {
       "source": "/the-stack/:path*",
       "destination": "/index.html"
     },
