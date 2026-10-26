@@ -23,7 +23,7 @@ export default function Hero() {
           <a href="#apply" className="btn btn--hero">
             See If We're A Fit
           </a>
-          <a href="#results" className="link-underline">
+          <a href="/transformations" className="link-underline">
             Show Me Proof
           </a>
         </div>

@@ -28,13 +28,17 @@ describe('MOG LIFE LABS app', () => {
     expect(
       screen.getByRole('link', { name: /explore coaching/i })
     ).toHaveAttribute('href', '/coaching');
+    expect(screen.getByRole('link', { name: /show me proof/i })).toHaveAttribute(
+      'href',
+      '/transformations'
+    );
     expect(screen.getByAltText(/patrick before/i)).toHaveAttribute(
       'src',
       '/images/transformations/patrick-before.jpg'
     );
     expect(screen.getByAltText(/patrick after/i)).toHaveAttribute(
       'src',
-      '/images/transformations/patrick-after.jpg'
+      '/images/transformations/patrick-after-new.png'
     );
     expect(screen.getByAltText(/brian before/i)).toHaveAttribute(
       'src',
@@ -45,8 +49,11 @@ describe('MOG LIFE LABS app', () => {
       '/images/transformations/brian-after.jpg'
     );
     expect(screen.getByText(/founder/i)).toBeInTheDocument();
-    expect(screen.getByText('March 2026 → July 2026')).toBeInTheDocument();
-    expect(screen.getByText('Age 40 → Age 41')).toBeInTheDocument();
+    expect(screen.getByText('7 months')).toBeInTheDocument();
+    expect(screen.getByText('1 year')).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: /see the proof up close/i })
+    ).toHaveAttribute('href', '/transformations');
     expect(screen.getByAltText(/brian and izzie sullivan/i)).toHaveAttribute(
       'src',
       '/images/brian-izzie-about.jpg'
@@ -98,6 +105,45 @@ describe('MOG LIFE LABS app', () => {
     expect(screen.getByRole('link', { name: /the stack/i })).toHaveAttribute(
       'href',
       '/the-stack'
+    );
+  });
+
+  it('renders the transformations page with case studies and an application flow', () => {
+    window.history.pushState({}, '', '/transformations');
+    const { container } = render(<App />);
+
+    expect(
+      screen.getByRole('heading', { level: 1, name: /proof takes work/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { level: 2, name: 'Patrick' })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { level: 2, name: 'Brian' })
+    ).toBeInTheDocument();
+    expect(screen.getByText('7 months')).toBeInTheDocument();
+    expect(screen.getAllByText('3 months')).toHaveLength(2);
+    expect(screen.getByText('2 months')).toBeInTheDocument();
+    expect(screen.getByText('1 year')).toBeInTheDocument();
+    expect(screen.getAllByText('WHAT THE PHOTOS SHOW')).toHaveLength(1);
+    expect(screen.queryByText(/withheld/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/ron|chris|thomas/i)).not.toBeInTheDocument();
+    expect(screen.getByAltText(/patrick before/i)).toHaveAttribute(
+      'src',
+      '/images/transformations/patrick-before.jpg'
+    );
+    expect(
+      screen.queryByAltText(/patrick additional progress poses/i)
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /the process behind the proof/i })
+    ).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Transformations' })).toHaveAttribute(
+      'aria-current',
+      'page'
+    );
+    expect(container.querySelector('input[name="source"]')).toHaveValue(
+      'transformations-page'
     );
   });
 

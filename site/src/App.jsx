@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import Stack from './components/Stack';
 import Start from './components/Start';
 import Coaching from './components/Coaching';
+import TransformationsPage from './components/TransformationsPage';
 
 function getTrafficSource() {
   const params = new URLSearchParams(window.location.search);
@@ -37,6 +38,7 @@ function App() {
   const isStackPage = path === '/the-stack';
   const isStartPage = path === '/start';
   const isCoachingPage = path === '/coaching';
+  const isTransformationsPage = path === '/transformations';
   const source = getTrafficSource();
 
   if (isStartPage) {
@@ -61,6 +63,10 @@ function App() {
       <main id="main-content">
         {isStackPage ? (
           <Stack />
+        ) : isTransformationsPage ? (
+          <TransformationsPage
+            source={source === 'direct' ? 'transformations-page' : source}
+          />
         ) : isCoachingPage ? (
           <Coaching source={source === 'direct' ? 'coaching-page' : source} />
         ) : (

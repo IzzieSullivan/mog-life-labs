@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 const LINKS = [
-  { href: '#results', label: 'Transformations' },
+  { href: '/transformations', label: 'Transformations', page: true },
   { href: '/coaching', label: 'Coaching', page: true },
   { href: '#coach', label: 'About Brian' },
   { href: '/the-stack', label: 'The Stack', page: true },

@@ -1,23 +1,4 @@
-const CASES = [
-  {
-    name: 'Patrick',
-    label: 'Client transformation',
-    meta: 'March 2026 → July 2026',
-    before: '/images/transformations/patrick-before.jpg',
-    after: '/images/transformations/patrick-after.jpg',
-    beforePosition: 'center center',
-    afterPosition: 'center center',
-  },
-  {
-    name: 'Brian',
-    label: 'Founder',
-    meta: 'Age 40 → Age 41',
-    before: '/images/transformations/brian-before.jpg',
-    after: '/images/transformations/brian-after.jpg',
-    beforePosition: 'center center',
-    afterPosition: 'center center',
-  },
-];
+import { TRANSFORMATION_CASES } from '../data/transformations';
 
 export default function Transformations() {
   return (
@@ -32,8 +13,8 @@ export default function Transformations() {
         </div>
       </div>
       <div className="transformations__grid">
-        {CASES.map((c) => (
-          <div className="tcard" key={c.name}>
+        {TRANSFORMATION_CASES.filter((item) => item.featured).map((c) => (
+          <div className="tcard" key={c.id}>
             <div className="tcard__photos">
               <div className="tcard__photo tcard__photo--before">
                 <img
@@ -61,6 +42,15 @@ export default function Transformations() {
             </div>
           </div>
         ))}
+      </div>
+      <div className="transformations__cta">
+        <div>
+          <span>Want the longer version?</span>
+          <p>Take a closer look at the work behind the before and after.</p>
+        </div>
+        <a className="btn transformations__button" href="/transformations">
+          See the proof up close
+        </a>
       </div>
     </div>
   );

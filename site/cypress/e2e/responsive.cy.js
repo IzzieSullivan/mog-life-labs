@@ -61,6 +61,21 @@ describe('responsive landing page', () => {
   });
 
   viewports.forEach(({ label, width, height }) => {
+    it(`renders transformations without horizontal overflow on ${label}`, () => {
+      cy.viewport(width, height);
+      cy.visit('/transformations');
+
+      cy.contains('h1', 'Proof takes work.').should('be.visible');
+      cy.contains('h2', 'Patrick').should('be.visible');
+      cy.contains('h2', 'Brian').should('be.visible');
+      cy.contains('The process behind the proof.').should('be.visible');
+      cy.window().then((win) => {
+        expect(win.document.documentElement.scrollWidth).to.be.lte(width);
+      });
+    });
+  });
+
+  viewports.forEach(({ label, width, height }) => {
     it(`renders The Stack without horizontal overflow on ${label}`, () => {
       cy.viewport(width, height);
       cy.visit('/the-stack');
