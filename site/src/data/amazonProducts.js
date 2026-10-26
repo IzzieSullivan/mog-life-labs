@@ -179,9 +179,9 @@ const FEATURED_IDS = [
   'walking-pad',
   'core-power',
   'rice-cooker',
-  'sunscreen',
-  'sea-salt-spray',
-  'getting-things-done',
+  'cyclic-dextrin',
+  'versa-grips',
+  'lmnt-sparkling',
 ];
 
 export const FEATURED_AMAZON_PRODUCTS = FEATURED_IDS.map((id) => {

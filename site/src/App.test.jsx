@@ -5,6 +5,7 @@ import App from './App';
 import {
   AMAZON_CATEGORIES,
   AMAZON_PRODUCT_COUNT,
+  FEATURED_AMAZON_PRODUCTS,
 } from './data/amazonProducts';
 
 describe('MOG LIFE LABS app', () => {
@@ -192,6 +193,16 @@ describe('MOG LIFE LABS app', () => {
 
     expect(AMAZON_PRODUCT_COUNT).toBe(105);
     expect(new Set(products.map((product) => product.id)).size).toBe(105);
+    expect(FEATURED_AMAZON_PRODUCTS.map((product) => product.id)).toEqual([
+      'creatine',
+      'reebok-nano-x5',
+      'walking-pad',
+      'core-power',
+      'rice-cooker',
+      'cyclic-dextrin',
+      'versa-grips',
+      'lmnt-sparkling',
+    ]);
     expect(products.find((product) => product.id === 'super-carb')?.href).toBe(
       'https://link.amazon/B09Fatkex'
     );
