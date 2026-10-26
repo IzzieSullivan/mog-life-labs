@@ -2,6 +2,10 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, vi } from 'vitest';
 import App from './App';
+import {
+  AMAZON_CATEGORIES,
+  AMAZON_PRODUCT_COUNT,
+} from './data/amazonProducts';
 
 describe('MOG LIFE LABS app', () => {
   beforeEach(() => {
@@ -134,6 +138,47 @@ describe('MOG LIFE LABS app', () => {
     ).toBeInTheDocument();
     expect(screen.queryByText(/mog life newsletter/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/subscribe on substack/i)).not.toBeInTheDocument();
+  });
+
+  it('organizes the complete Amazon edit on The Stack', async () => {
+    const user = userEvent.setup();
+    const products = AMAZON_CATEGORIES.flatMap((category) => category.products);
+
+    expect(AMAZON_PRODUCT_COUNT).toBe(105);
+    expect(new Set(products.map((product) => product.id)).size).toBe(105);
+    expect(products.find((product) => product.id === 'super-carb')?.href).toBe(
+      'https://link.amazon/B09Fatkex'
+    );
+    expect(products.find((product) => product.id === 'sea-salt-spray')?.href).toBe(
+      'https://link.amazon/B0hH92cdj'
+    );
+    expect(products.find((product) => product.id === 'potassium-chloride')?.href).toBe(
+      'https://link.amazon/B04OttFVI'
+    );
+    expect(products.find((product) => product.id === 'derma-roller')?.href).toBe(
+      'https://link.amazon/B0bChMT2Q'
+    );
+
+    window.history.pushState({}, '', '/the-stack');
+    render(<App />);
+
+    expect(
+      screen.getByRole('heading', { level: 2, name: /useful.*worth owning/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/as an amazon associate i earn from qualifying purchases/i)
+    ).toBeInTheDocument();
+
+    await user.click(
+      screen
+        .getByRole('heading', { level: 4, name: 'Supplements & Recovery' })
+        .closest('summary')
+    );
+
+    expect(
+      screen.getByRole('link', { name: /super carb on amazon.*paid link/i })
+    ).toHaveAttribute('href', 'https://link.amazon/B09Fatkex');
+    expect(screen.getByText(/not medical advice or a universal protocol/i)).toBeInTheDocument();
   });
 
   it('renders the coaching page with pricing, scope and application flow', () => {

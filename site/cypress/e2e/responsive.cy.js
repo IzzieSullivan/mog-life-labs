@@ -73,7 +73,15 @@ describe('responsive landing page', () => {
       cy.contains('h2', 'Tesla').should('be.visible');
       cy.contains('h2', 'REP Fitness').should('be.visible');
       cy.contains('button', 'Copy code').should('be.visible');
-      cy.contains('As an Amazon Associate').should('not.exist');
+      cy.contains('As an Amazon Associate').should('be.visible');
+      cy.contains('h3', 'Brian’s shortlist.').should('be.visible');
+      cy.contains('summary', 'Supplements & Recovery').click();
+      cy.contains('h5', 'Creatine').should('be.visible');
+      cy.get('a[aria-label="Super Carb on Amazon (paid link)"]').should(
+        'have.attr',
+        'href',
+        'https://link.amazon/B09Fatkex'
+      );
       cy.window().then((win) => {
         expect(win.document.documentElement.scrollWidth).to.be.lte(width);
       });

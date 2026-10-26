@@ -1,4 +1,9 @@
 import { useEffect, useState } from 'react';
+import {
+  AMAZON_CATEGORIES,
+  AMAZON_PRODUCT_COUNT,
+  FEATURED_AMAZON_PRODUCTS,
+} from '../data/amazonProducts';
 
 const PARTNER_ITEMS = [
   {
@@ -87,66 +92,18 @@ function PromoCode({ code }) {
   );
 }
 
-const AMAZON_CATEGORIES = [
-  {
-    id: 'supplements',
-    number: '01',
-    title: 'Supplements',
-    intro: 'The basics that earn their place. No 19-product morning ritual required.',
-    products: [],
-  },
-  {
-    id: 'gym-gear',
-    number: '02',
-    title: 'Gym Gear',
-    intro: 'Useful equipment for better sessions—not toys destined for the garage.',
-    products: [],
-  },
-  {
-    id: 'clothes',
-    number: '03',
-    title: 'Clothes',
-    intro: 'Training and everyday pieces that fit well, perform, and do not look ridiculous.',
-    products: [],
-  },
-  {
-    id: 'looksmaxxing',
-    number: '04',
-    title: 'Looksmaxxing',
-    intro: 'Grooming, skincare, and the small upgrades that make the whole package look sharper.',
-    products: [],
-  },
-];
-
-const SHOW_AMAZON_EDIT = false;
-
-function ProductCard({ product }) {
+function AmazonLink({ product, className = '' }) {
   return (
-    <article className="product-card">
-      <div className="product-card__image">
-        {product.image ? (
-          <img src={product.image} alt="" />
-        ) : (
-          <span>Product image</span>
-        )}
-      </div>
-      <div className="product-card__content">
-        <div className="product-card__label">MOG PICK</div>
-        <h3>{product.name}</h3>
-        <p>{product.reason}</p>
-        <div className="product-card__action">
-          <a
-            className="btn product-card__button"
-            href={product.href}
-            target="_blank"
-            rel="noopener noreferrer sponsored"
-          >
-            View on Amazon
-          </a>
-          <span>Paid link</span>
-        </div>
-      </div>
-    </article>
+    <a
+      className={`amazon-product-link ${className}`.trim()}
+      href={product.href}
+      target="_blank"
+      rel="noopener noreferrer sponsored"
+      aria-label={`${product.name} on Amazon (paid link)`}
+    >
+      <span>View on Amazon</span>
+      <span aria-hidden="true">↗</span>
+    </a>
   );
 }
 
@@ -221,66 +178,98 @@ export default function Stack() {
         ))}
       </section>
 
-      {SHOW_AMAZON_EDIT && (
-        <section className="shell bordered-x amazon" aria-labelledby="amazon-title">
+      <section className="shell bordered-x amazon" aria-labelledby="amazon-title">
           <div className="amazon__header">
-            <div className="amazon__eyebrow">THE MOG LIFE AMAZON EDIT</div>
+            <div className="amazon__eyebrow">THE MOG LIFE AMAZON EDIT · {AMAZON_PRODUCT_COUNT} PICKS</div>
             <h2 id="amazon-title">
-              Useful. Tested. <span>Worth owning.</span>
+              Useful. Specific. <span>Worth owning.</span>
             </h2>
             <p className="amazon__lead">
-              Training gear, supplements, clothes, and everyday upgrades that
-              make disciplined living a little easier. If we would not use it
-              ourselves, it does not belong here.
+              Brian’s go-to training gear, supplements, food, grooming products,
+              and everyday tools. Start with the short list, or open the category
+              you actually care about.
             </p>
             <div className="amazon__disclosure">
-              <strong>Paid links:</strong> As an Amazon Associate I earn from
-              qualifying purchases.
+              <strong>Paid links:</strong> As an Amazon Associate I earn from qualifying
+              purchases. MOG LIFE LABS may earn a commission at no additional cost
+              to you.
             </div>
-            <nav className="amazon__jump-links" aria-label="Amazon categories">
-              {AMAZON_CATEGORIES.map((category) => (
-                <a key={category.id} href={`#${category.id}`}>
-                  {category.title}
-                </a>
-              ))}
-            </nav>
           </div>
 
-          <div className="amazon__categories">
-            {AMAZON_CATEGORIES.map((category) => (
-              <section
-                className="product-category"
-                id={category.id}
-                key={category.id}
-              >
-                <div className="product-category__header">
-                  <div>
-                    <span>{category.number} / 04</span>
-                    <h3>{category.title}</h3>
+          <section className="amazon-featured" aria-labelledby="amazon-featured-title">
+            <div className="amazon-featured__heading">
+              <div>
+                <span>START HERE</span>
+                <h3 id="amazon-featured-title">Brian’s shortlist.</h3>
+              </div>
+              <p>
+                Eight reliable places to start. The complete list is organized below.
+              </p>
+            </div>
+            <div className="amazon-featured__grid">
+              {FEATURED_AMAZON_PRODUCTS.map((product, index) => (
+                <article className="amazon-featured-card" key={product.id}>
+                  <div className="amazon-featured-card__meta">
+                    <span>{String(index + 1).padStart(2, '0')}</span>
+                    <span>{product.category}</span>
                   </div>
-                  <p>{category.intro}</p>
-                </div>
+                  <h4>{product.name}</h4>
+                  <div className="amazon-featured-card__action">
+                    <AmazonLink product={product} />
+                    <span>Paid link</span>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
 
-                {category.products.length ? (
-                  <div
-                    className="product-rail"
-                    aria-label={`${category.title} recommendations`}
-                  >
-                    {category.products.map((product) => (
-                      <ProductCard product={product} key={product.name} />
-                    ))}
+          <div className="amazon-catalog">
+            <div className="amazon-catalog__heading">
+              <div>
+                <span>THE FULL EDIT</span>
+                <h3>Find what you need.</h3>
+              </div>
+              <p>Open a category to browse every product. No endless scroll required.</p>
+            </div>
+
+            {AMAZON_CATEGORIES.map((category) => (
+              <details className="amazon-category" id={category.id} key={category.id}>
+                <summary className="amazon-category__summary">
+                  <span className="amazon-category__number">{category.number}</span>
+                  <div>
+                    <h4>{category.title}</h4>
+                    <p>{category.intro}</p>
                   </div>
-                ) : (
-                  <div className="product-category__empty">
-                    <span>Curating now</span>
-                    <p>The first Mog-approved picks are coming soon.</p>
+                  <div className="amazon-category__count">
+                    <strong>{category.products.length}</strong>
+                    <span>{category.products.length === 1 ? 'pick' : 'picks'}</span>
                   </div>
+                  <span className="amazon-category__toggle" aria-hidden="true" />
+                </summary>
+
+                <div className="amazon-category__products">
+                  {category.products.map((product) => (
+                    <article className="amazon-product" key={product.id}>
+                      <h5>{product.name}</h5>
+                      <div className="amazon-product__action">
+                        <AmazonLink product={product} />
+                        <span>Paid link</span>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+                {category.id === 'supplements' && (
+                  <p className="amazon-category__health-note">
+                    Brian’s personal picks are not medical advice or a universal protocol.
+                    Supplements can interact with medications and health conditions. Check
+                    ingredients, dosing, and suitability with a qualified healthcare
+                    professional.
+                  </p>
                 )}
-              </section>
+              </details>
             ))}
           </div>
         </section>
-      )}
 
       <section className="shell bordered-x stack-close">
         <div className="stack-close__rule" />
