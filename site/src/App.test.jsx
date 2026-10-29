@@ -276,6 +276,46 @@ describe('MOG LIFE LABS app', () => {
     ).toHaveAttribute('role', 'alert');
   });
 
+  it('requires contact details for phone and social preferences', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    const contactMethod = screen.getByLabelText(/how would you like to talk/i);
+    expect(screen.getByLabelText(/email.*always required/i)).toBeRequired();
+
+    await user.selectOptions(contactMethod, 'phone');
+    expect(screen.getByLabelText(/phone number/i)).toBeRequired();
+    expect(screen.queryByLabelText(/twitter.*instagram handle/i)).not.toBeInTheDocument();
+
+    await user.selectOptions(contactMethod, 'social');
+    expect(screen.getByLabelText(/twitter.*instagram handle/i)).toBeRequired();
+    expect(screen.queryByLabelText(/phone number/i)).not.toBeInTheDocument();
+  });
+
+  it('shows and submits the Calendly link for a video call preference', async () => {
+    const user = userEvent.setup();
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true }));
+    render(<App />);
+
+    await user.type(screen.getByLabelText(/name/i), 'Jane Doe');
+    await user.type(screen.getByLabelText(/email/i), 'jane@example.com');
+    await user.selectOptions(screen.getByLabelText(/how would you like to talk/i), 'video');
+
+    expect(screen.getByRole('link', { name: /choose a time on calendly/i })).toHaveAttribute(
+      'href',
+      'https://calendly.com/moglifelabs/test-call'
+    );
+
+    await user.click(screen.getByRole('button', { name: /send my application/i }));
+    await screen.findByRole('heading', { name: /application received/i });
+
+    const submittedData = fetch.mock.calls[0][1].body;
+    expect(submittedData.get('preferred_contact_method')).toBe('video');
+    expect(submittedData.get('video_call_link')).toBe(
+      'https://calendly.com/moglifelabs/test-call'
+    );
+  });
+
   it('confirms a successful application and resets the form', async () => {
     const user = userEvent.setup();
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true }));

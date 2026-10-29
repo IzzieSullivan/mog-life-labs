@@ -4,6 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 // (or set VITE_FORMSPREE_ID in a .env file) before going live.
 const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || 'YOUR_FORM_ID';
 const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_ID}`;
+const CALENDLY_URL =
+  import.meta.env.VITE_CALENDLY_URL?.trim() ||
+  'https://calendly.com/moglifelabs/30min';
 
 export default function Apply({
   source = 'website',
@@ -11,6 +14,7 @@ export default function Apply({
   compact = false,
 }) {
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+  const [contactMethod, setContactMethod] = useState('email');
   const successHeadingRef = useRef(null);
 
   useEffect(() => {
@@ -125,9 +129,62 @@ export default function Apply({
               <input id="name" name="name" type="text" placeholder="Jane Doe" required />
             </div>
             <div className="form-field">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email (always required)</label>
               <input id="email" name="email" type="email" placeholder="you@email.com" required />
             </div>
+            <div className="form-field form-field--full">
+              <label htmlFor="contact-method">How would you like to talk?</label>
+              <select
+                id="contact-method"
+                name="preferred_contact_method"
+                value={contactMethod}
+                onChange={(event) => setContactMethod(event.target.value)}
+                required
+              >
+                <option value="email">Email</option>
+                <option value="phone">Phone</option>
+                <option value="social">Twitter / Instagram</option>
+                <option value="video">Schedule a video call</option>
+              </select>
+            </div>
+            {contactMethod === 'phone' && (
+              <div className="form-field form-field--full">
+                <label htmlFor="phone">Phone number</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  autoComplete="tel"
+                  placeholder="(555) 555-5555"
+                  required
+                />
+              </div>
+            )}
+            {contactMethod === 'social' && (
+              <div className="form-field form-field--full">
+                <label htmlFor="social-handle">Twitter / Instagram handle</label>
+                <input
+                  id="social-handle"
+                  name="social_handle"
+                  type="text"
+                  autoComplete="off"
+                  placeholder="@yourhandle"
+                  required
+                />
+              </div>
+            )}
+            {contactMethod === 'video' && (
+              <div className="form-field form-field--full form-scheduling">
+                <input type="hidden" name="video_call_link" value={CALENDLY_URL} />
+                {CALENDLY_URL ? (
+                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+                    Choose a time on Calendly
+                  </a>
+                ) : (
+                  <p>We&apos;ll email you the scheduling link.</p>
+                )}
+              </div>
+            )}
             <div className="form-field">
               <label htmlFor="goal">Primary goal</label>
               <select id="goal" name="goal" defaultValue="Get lean / cut">
