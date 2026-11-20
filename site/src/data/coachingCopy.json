@@ -1,0 +1,164 @@
+{
+  "intro": {
+    "title": "MOG LIFE Coaching",
+    "paragraphs": [
+      "Personalized bodybuilding coaching built around your goals, experience, and lifestyle.",
+      "Whether you’re looking to build muscle, lose body fat, improve your physique, or take your bodybuilding to the next level, MOG LIFE offers individualized coaching to help you get there.",
+      "No cookie-cutter programs. No unnecessary complexity. Just a structured plan, ongoing adjustments, and the guidance to make consistent progress.",
+      "We offer four levels of coaching depending on how much support you’re looking for."
+    ]
+  },
+  "packages": [
+    {
+      "name": "MOG LIFE Complete",
+      "prices": [
+        "$2,200 — Six Months"
+      ],
+      "availability": null,
+      "lead": [
+        "The full MOG LIFE experience. Our flagship coaching package and best overall value.",
+        "Complete is designed for clients who want comprehensive coaching that goes beyond training and nutrition. We take a detailed look at your physique, performance, health markers, recovery, and lifestyle to build a plan tailored to your goals."
+      ],
+      "includedHeading": "What’s included:",
+      "included": [
+        "Personalized training: A customized workout program built around your physique, experience, goals, equipment, and recovery capacity. Ongoing adjustments as you progress.",
+        "Nutrition coaching: Individualized calories, macros, cardio recommendations, and dietary adjustments for fat loss, muscle growth, or body recomposition.",
+        "Weekly check-ins: Detailed progress reviews using weight trends, photos, training performance, and other relevant data.",
+        "Ongoing communication: Direct messaging for questions, feedback, and guidance throughout your coaching.",
+        "Comprehensive onboarding: A detailed assessment and individualized kickoff plan outlining your training, nutrition, supplementation, and other relevant strategies.",
+        "Enhanced bodybuilding guidance: Education and individualized strategy discussions involving performance-enhancing compounds, peptides, and advanced supplementation when applicable.",
+        "Bloodwork review: Analysis of relevant lab markers in the context of your training, goals, and overall health.",
+        "Lifestyle and appearance optimization: Guidance on topics such as hair restoration, skincare, sleep, recovery, cognitive performance, nootropics, and other areas of personal optimization.",
+        "Additional support: Phone calls when appropriate for more involved discussions.",
+        "MOG LIFE merchandise: A complimentary MOG LIFE hat."
+      ],
+      "details": [],
+      "investment": "Investment: $2,200 paid upfront for six months of coaching.",
+      "investmentBullets": [],
+      "investmentNotes": [
+        "Equivalent to approximately $367/month, with onboarding and all included services covered by the package price."
+      ],
+      "bestFor": "Best for: Clients who want a comprehensive approach to physique development, performance, and personal optimization—and are ready to commit to six months of progress.",
+      "closing": null
+    },
+    {
+      "name": "MOG LIFE Monthly",
+      "prices": [
+        "$600 to Start · $600 Month Two · $400/Month Thereafter"
+      ],
+      "availability": null,
+      "lead": [
+        "Comprehensive bodybuilding coaching with a lower upfront commitment.",
+        "Monthly is designed for clients who want individualized bodybuilding coaching and access to advanced guidance without paying for six months upfront.",
+        "You’ll receive the same core training, nutrition, and bodybuilding expertise as our flagship package, with a more focused scope and flexible ongoing billing."
+      ],
+      "includedHeading": "What’s included:",
+      "included": [
+        "Personalized training: A customized workout program with ongoing adjustments based on progress, performance, and recovery.",
+        "Nutrition coaching: Individualized calories, macros, dietary recommendations, and ongoing adjustments.",
+        "Weekly check-ins: Regular progress reviews and updates to your plan.",
+        "Ongoing communication: Direct messaging for coaching questions and guidance.",
+        "Comprehensive onboarding: A detailed assessment and personalized kickoff plan.",
+        "Enhanced bodybuilding guidance: Individualized discussions involving PEDs, peptides, and advanced supplementation when applicable.",
+        "Bloodwork review: Interpretation of relevant lab markers to inform your bodybuilding strategy."
+      ],
+      "details": [
+        "Monthly focuses specifically on bodybuilding, training, nutrition, and performance. Broader lifestyle and appearance optimization—including dedicated hair restoration, skincare, and nootropic strategies—is reserved for Complete and VIP."
+      ],
+      "investment": "Investment:",
+      "investmentBullets": [
+        "First month: $600",
+        "Second month: $600",
+        "Third month onward: $400/month"
+      ],
+      "investmentNotes": [
+        "The standard coaching rate is $400/month, with a one-time $400 onboarding fee split across your first two payments to make getting started easier.",
+        "The program is designed around an initial three-month coaching commitment. After that, coaching continues at $400/month."
+      ],
+      "bestFor": "Best for: Clients who want serious, comprehensive bodybuilding coaching with a lower initial payment and the flexibility of ongoing monthly billing.",
+      "closing": null
+    },
+    {
+      "name": "MOG LIFE Natty",
+      "prices": [
+        "$275/Month · Three-Month Commitment",
+        "Or $800 for Three Months Paid Upfront"
+      ],
+      "availability": null,
+      "lead": [
+        "Straightforward training and nutrition coaching focused on building a better physique.",
+        "Not everyone needs advanced supplementation, bloodwork consulting, or an extensive optimization protocol.",
+        "Natty is designed for clients who want a knowledgeable coach handling the fundamentals: effective training, appropriate nutrition, consistent progress tracking, and adjustments when needed."
+      ],
+      "includedHeading": "What’s included:",
+      "included": [
+        "Personalized workout program: A training split built around your goals, experience, available equipment, and schedule.",
+        "Nutrition guidance: Individualized calorie and macro targets for building muscle, losing fat, or improving body composition.",
+        "Biweekly check-ins: Progress reviews every two weeks to evaluate results and make necessary adjustments.",
+        "Ongoing adjustments: Updates to calories, macros, training volume, and exercise selection based on your progress.",
+        "Training phase transitions: Updated programming when moving between major phases, such as a cut and a gaining phase.",
+        "Basic supplementation: Guidance on foundational supplements such as creatine, protein, and other essentials when appropriate.",
+        "Coaching communication: Direct messaging for questions and clarification related to your training and nutrition plan."
+      ],
+      "details": [
+        "Natty uses a streamlined onboarding process and focuses on executing the fundamentals well.",
+        "It does not include PED or peptide protocol consulting, bloodwork interpretation, advanced supplementation strategies, hair restoration, skincare, nootropics, or broader lifestyle optimization.",
+        "Training programs are updated when there’s a reason to make a change—not simply for the sake of introducing new exercises."
+      ],
+      "investment": "Investment:",
+      "investmentBullets": [
+        "$275/month with a three-month commitment ($825 total), or",
+        "$800 paid upfront for three months."
+      ],
+      "investmentNotes": [
+        "Coaching can continue after the initial three-month period."
+      ],
+      "bestFor": "Best for: Natural lifters, beginners, and experienced trainees who want professional training and nutrition guidance without the additional services included in our comprehensive coaching packages.",
+      "closing": null
+    },
+    {
+      "name": "MOG LIFE VIP",
+      "prices": [
+        "$799/Month · Six-Month Commitment"
+      ],
+      "availability": "Limited Availability",
+      "lead": [
+        "Our highest level of individualized coaching, access, and personal attention.",
+        "VIP is designed for clients who want the most comprehensive MOG LIFE experience, with a greater level of direct involvement, priority communication, and proactive oversight.",
+        "This is a premium coaching relationship for individuals who value having a knowledgeable coach closely involved in their physique development, performance, recovery, and broader optimization goals."
+      ],
+      "includedHeading": "Everything included in MOG LIFE Complete, plus:",
+      "included": [
+        "Twice-weekly progress reviews: More frequent opportunities to evaluate progress, troubleshoot issues, and refine your strategy.",
+        "Priority communication: Higher-priority access for questions, feedback, and coaching support.",
+        "Monthly strategy calls: A dedicated one-on-one call each month to review progress, discuss priorities, and plan next steps.",
+        "Proactive coaching: More frequent review of training, nutrition, recovery, and other relevant variables rather than relying exclusively on scheduled check-ins.",
+        "Comprehensive optimization: A coordinated approach to physique development, enhanced bodybuilding, supplementation, bloodwork, sleep, recovery, hair, skincare, cognitive performance, and other relevant lifestyle goals.",
+        "Premium onboarding: An extensive initial assessment and individualized strategy.",
+        "MOG LIFE merchandise: Complimentary branded merchandise."
+      ],
+      "details": [
+        "VIP availability is intentionally limited to ensure each client receives the level of attention the service is designed to provide."
+      ],
+      "investment": "Investment: $799/month with a six-month commitment.",
+      "investmentBullets": [],
+      "investmentNotes": [],
+      "bestFor": "Best for: Clients who want a highly involved coaching relationship, premium access, and comprehensive support across bodybuilding, performance, and lifestyle optimization.",
+      "closing": "Available by application or invitation."
+    }
+  ],
+  "guide": {
+    "title": "Which MOG LIFE Package Is Right for You?",
+    "choices": [
+      "Choose Complete if you want the full range of coaching services, comprehensive optimization, and the best overall value over six months.",
+      "Choose Monthly if you want advanced bodybuilding coaching but prefer a lower initial payment rather than paying for six months upfront.",
+      "Choose Natty if your primary focus is training, nutrition, and accountability, without advanced protocols or additional optimization services.",
+      "Choose VIP if you want our highest level of personal attention, priority access, and proactive coaching."
+    ],
+    "closing": "Every package is built around the same philosophy: individualized plans, evidence-informed decision-making, and adjustments based on your actual progress."
+  },
+  "start": {
+    "title": "Ready to get started?",
+    "body": "Reach out to discuss your goals, experience, and which level of coaching makes the most sense for you."
+  }
+}
