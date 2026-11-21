@@ -1483,7 +1483,9 @@
 
 .coaching-more h2,
 .coaching-section-heading h2,
-.coaching-expectation h2 {
+.coaching-expectation h2,
+.coaching-guide h2,
+.coaching-ready h2 {
   color: #fff;
   font-family: var(--font-display);
   font-size: clamp(40px, 5.6vw, 62px);
@@ -1607,9 +1609,10 @@
 }
 
 .coaching-options__grid {
+  align-items: stretch;
   display: grid;
   gap: 18px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-top: 44px;
 }
 
@@ -1687,6 +1690,209 @@
 
 .coaching-option > a:hover {
   color: var(--color-orange);
+}
+
+.coaching-package {
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  padding: clamp(24px, 3vw, 32px);
+}
+
+.coaching-package__header h3 {
+  font-size: clamp(28px, 3vw, 36px);
+  line-height: 0.95;
+  margin: 0 0 16px;
+  overflow-wrap: break-word;
+}
+
+.coaching-package__prices {
+  display: grid;
+  gap: 8px;
+}
+
+.coaching-package__price {
+  color: var(--color-orange);
+  font-family: var(--font-condensed);
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.coaching-package__availability {
+  border: 1px solid var(--color-orange);
+  color: var(--color-orange);
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  margin: 16px 0 0;
+  padding: 7px 10px;
+  text-transform: uppercase;
+}
+
+.coaching-package__body {
+  margin-top: 22px;
+}
+
+.coaching-package__body p,
+.coaching-package__closing {
+  color: var(--color-text-soft);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 14px 0 0;
+}
+
+.coaching-package__body h4 {
+  color: #fff;
+  font-family: var(--font-condensed);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin: 26px 0 0;
+  text-transform: uppercase;
+}
+
+.coaching-package__list {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+}
+
+.coaching-package__list li {
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-soft);
+  font-size: 15px;
+  line-height: 1.55;
+  overflow-wrap: break-word;
+  padding: 12px 0 12px 16px;
+  position: relative;
+}
+
+.coaching-package__list li::before {
+  background: var(--color-orange);
+  content: '';
+  height: 6px;
+  left: 0;
+  position: absolute;
+  top: 18px;
+  width: 6px;
+}
+
+.coaching-package__label {
+  color: #fff;
+  font-weight: 600;
+}
+
+.coaching-package__footer {
+  margin-top: auto;
+  padding-top: 22px;
+}
+
+.coaching-package__best {
+  border-top: 1px solid var(--color-border-strong);
+  color: var(--color-text-body);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+  padding-top: 16px;
+}
+
+.coaching-package__best .coaching-package__label {
+  color: var(--color-orange);
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.coaching-package__closing {
+  color: var(--color-text);
+  font-family: var(--font-condensed);
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.coaching-package__footer a {
+  border-top: 1px solid var(--color-border-strong);
+  color: #fff;
+  display: block;
+  font-family: var(--font-condensed);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin-top: 18px;
+  padding-top: 18px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.coaching-package__footer a:hover {
+  color: var(--color-orange);
+}
+
+.coaching-guide,
+.coaching-ready {
+  border-top: 1px solid var(--color-border);
+  padding: clamp(58px, 8vw, 88px) clamp(28px, 5vw, 64px);
+}
+
+.coaching-guide h2,
+.coaching-ready h2 {
+  overflow-wrap: break-word;
+}
+
+.coaching-guide__grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 36px;
+}
+
+.coaching-guide__choice {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-body);
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: break-word;
+  padding: 22px 24px;
+}
+
+.coaching-guide__choice span {
+  color: #fff;
+  font-weight: 600;
+}
+
+.coaching-guide__closing,
+.coaching-ready p {
+  color: var(--color-text-body);
+  font-size: 17px;
+  line-height: 1.65;
+  margin: 28px 0 0;
+  max-width: 760px;
+}
+
+.coaching-ready {
+  align-items: center;
+  background: var(--color-bg-alt);
+  display: flex;
+  gap: clamp(20px, 4vw, 48px);
+  justify-content: space-between;
+}
+
+.coaching-ready p {
+  margin-top: 16px;
+}
+
+.coaching-ready .btn {
+  flex: 0 0 auto;
 }
 
 .coaching-expectation {
@@ -2547,7 +2753,8 @@
   }
 
   .coaching-pillars,
-  .coaching-options__grid {
+  .coaching-options__grid,
+  .coaching-guide__grid {
     grid-template-columns: 1fr;
   }
 
@@ -2721,6 +2928,8 @@
   .coaching-included,
   .coaching-process,
   .coaching-options,
+  .coaching-guide,
+  .coaching-ready,
   .coaching-expectation {
     padding-left: 24px;
     padding-right: 24px;
@@ -2730,9 +2939,14 @@
     font-size: clamp(52px, 16vw, 76px);
   }
 
-  .coaching-hero__actions {
+  .coaching-hero__actions,
+  .coaching-ready {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .coaching-ready .btn {
+    width: 100%;
   }
 
   .coaching-included__grid,

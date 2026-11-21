@@ -7,6 +7,7 @@ import {
   AMAZON_PRODUCT_COUNT,
   FEATURED_AMAZON_PRODUCTS,
 } from './data/amazonProducts';
+import coachingCopy from './data/coachingCopy.json';
 
 describe('MOG LIFE LABS app', () => {
   beforeEach(() => {
@@ -248,9 +249,32 @@ describe('MOG LIFE LABS app', () => {
         name: /build the body.*improve the whole man/i,
       })
     ).toBeInTheDocument();
-    expect(screen.getByText('$600')).toBeInTheDocument();
-    expect(screen.getByText('$1,500')).toBeInTheDocument();
-    expect(screen.getByText('$2,500')).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { level: 2, name: 'MOG LIFE Coaching' })
+    ).toBeInTheDocument();
+    for (const name of [
+      'MOG LIFE Complete',
+      'MOG LIFE Monthly',
+      'MOG LIFE Natty',
+      'MOG LIFE VIP',
+    ]) {
+      expect(screen.getByRole('heading', { level: 3, name })).toBeInTheDocument();
+    }
+    expect(screen.getByText('$2,200 — Six Months')).toBeInTheDocument();
+    expect(
+      screen.getByText('$600 to Start · $600 Month Two · $400/Month Thereafter')
+    ).toBeInTheDocument();
+    expect(screen.getByText('$275/Month · Three-Month Commitment')).toBeInTheDocument();
+    expect(screen.getByText('Or $800 for Three Months Paid Upfront')).toBeInTheDocument();
+    expect(screen.getByText('$799/Month · Six-Month Commitment')).toBeInTheDocument();
+    expect(screen.getByText('Limited Availability')).toBeInTheDocument();
+    expect(screen.getByText('Available by application or invitation.')).toBeInTheDocument();
+    expect(screen.queryByText('$1,500')).not.toBeInTheDocument();
+    expect(screen.queryByText('$2,500')).not.toBeInTheDocument();
+    expect(screen.queryByText('Month-to-month')).not.toBeInTheDocument();
+    expect(screen.queryByText('12 weeks')).not.toBeInTheDocument();
+    expect(screen.queryByText('24 weeks')).not.toBeInTheDocument();
+    expect(screen.queryByText(/pick your runway/i)).not.toBeInTheDocument();
     expect(screen.getByText(/regrowing his hair/i)).toBeInTheDocument();
     expect(
       screen.getByText(/coaching does not include medical diagnosis or treatment/i)
@@ -260,6 +284,26 @@ describe('MOG LIFE LABS app', () => {
       'page'
     );
     expect(screen.getByLabelText(/email/i)).toBeRequired();
+
+    const ready = screen.getByRole('heading', { name: 'Ready to get started?' });
+    const readySection = ready.closest('section');
+    expect(readySection.querySelector('a')).toHaveAttribute('href', '#coaching-apply');
+
+    const copyRoot = screen.getByTestId('coaching-copy');
+    const visible = copyRoot.textContent;
+    const strings = [];
+    const walk = (value) => {
+      if (typeof value === 'string') strings.push(value);
+      else if (Array.isArray(value)) value.forEach(walk);
+      else if (value && typeof value === 'object') Object.values(value).forEach(walk);
+    };
+    walk(coachingCopy);
+    let cursor = 0;
+    for (const copy of strings) {
+      const at = visible.indexOf(copy, cursor);
+      expect(at, copy).toBeGreaterThanOrEqual(0);
+      cursor = at + copy.length;
+    }
   });
 
   it('shows an error when the form service rejects the application', async () => {

@@ -110,10 +110,22 @@ describe('responsive landing page', () => {
 
       cy.contains('h1', 'Build the body.').should('be.visible');
       cy.contains('h2', 'No template. No autopilot.').should('be.visible');
-      cy.contains('h2', 'Pick your runway.').should('be.visible');
-      cy.contains('$600').should('be.visible');
-      cy.contains('$1,500').should('be.visible');
-      cy.contains('$2,500').should('be.visible');
+      cy.contains('h2', 'MOG LIFE Coaching').should('be.visible');
+      cy.contains('h3', 'MOG LIFE Complete').should('be.visible');
+      cy.contains('h3', 'MOG LIFE Monthly').should('be.visible');
+      cy.contains('h3', 'MOG LIFE Natty').should('be.visible');
+      cy.contains('h3', 'MOG LIFE VIP').should('be.visible');
+      cy.contains('$2,200 — Six Months').should('be.visible');
+      cy.contains('$600 to Start · $600 Month Two · $400/Month Thereafter').should(
+        'be.visible'
+      );
+      cy.contains('$275/Month · Three-Month Commitment').should('be.visible');
+      cy.contains('$799/Month · Six-Month Commitment').should('be.visible');
+      cy.contains('Limited Availability').should('be.visible');
+      cy.contains('Available by application or invitation.').should('be.visible');
+      cy.contains('Ready to get started?').should('be.visible');
+      cy.contains('$1,500').should('not.exist');
+      cy.contains('$2,500').should('not.exist');
       cy.window().then((win) => {
         expect(win.document.documentElement.scrollWidth).to.be.lte(width);
       });
